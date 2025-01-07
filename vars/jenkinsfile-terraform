@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Plan') {
+            steps {
+                sh 'terraform init -input=false'
+                sh 'terraform show -no-color tfplan > tfplan.txt'
+            }
+        }
+        stage('Apply') {
+            steps {
+                sh "terraform --version"
+            }
+        }
+    }
+
+}
